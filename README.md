@@ -23,6 +23,7 @@ Javascript:
 - Symfony Stimulus 2.0
 - TypeScript 4.2
 - SASS 1.32
+- Twitter Bootstrap 5.0
 
 Development
 -----------
