@@ -1,21 +1,21 @@
+{% set dark_theme = app.session.get('dark_theme', false) %}
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
+        <title>{% block title 'App' %}</title>
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_link_tags(dark_theme ? 'app_dark' : 'app_light') }}
         {% endblock %}
     </head>
     <body>
-        <div class="container">
+        {{ include('_menu_global/main.html.twig') }}
+        <div id="content" class="container-fluid">
             {% block body '' %}
         </div>
+        {% block javascripts %}
+            {{ encore_entry_script_tags(dark_theme ? 'app_dark' : 'app_light') }}
+        {% endblock %}
     </body>
 </html>

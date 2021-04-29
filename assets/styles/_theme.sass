@@ -1,61 +1,25 @@
-$darkTheme: false
+@import "node_modules/bootstrap/scss/functions"
+@import "node_modules/bootstrap/scss/variables"
+@import "node_modules/bootstrap/scss/mixins"
+@import "node_modules/bootstrap/scss/helpers"
 
-// Global theme variables
-$black: #1f1d08
-$white: #ebebeb
-$primary: #243754
-$secondary: #94ae3f
-$light: darken($white, .1)
+$darkTheme: true !default
 
-// Computed theme variables
-$bg: $white
-$fg: $black
+$bg: $gray-200
+$bg2: $gray-100
+$fg: $gray-800
+$fg2: $gray-900
+
 @if $darkTheme
-    $fg: $white
-    $bg: $black
-$bgMix: mix($bg, $fg, 95%)
-$fgMix: mix($fg, $bg, 95%)
-$fgAlpha: rgba($fg, .1)
-$bgAlpha: rgba($bg, .1)
+    $bg: $gray-800
+    $bg2: $gray-900
+    $fg: $gray-200
+    $fg2: $gray-100
 
-//
-// Bootstrap override
-//
+
+// Bootstrap colors extended for dark theme support
+
+$body-bg: $bg
 $body-color: $fg
-$body-bg: $bgMix
 
-$link-color: rgba($primary, .9)
-$link-hover-color: $primary
-
-// Grid
-$grid-gutter-width: 1rem
-
-// Nav tabs
-$nav-tabs-border-width: 0
-$nav-tabs-link-active-bg: $bg
-$nav-tabs-link-active-color: $fg
-$nav-tabs-link-active-border-width: 0
-
-// Forms
-
-$input-bg: $bg
-$input-disabled-bg: $bgMix
-$input-color: $fg
-$input-border-color: $fgAlpha
-
-// Dropdowns
-$dropdown-bg: $bg
-$dropdown-divider-bg: $fgAlpha
-$dropdown-border-color: $fgAlpha
-$dropdown-link-color: $fgMix
-$dropdown-link-hover-color: $fg
-$dropdown-link-hover-bg: $fgAlpha
-$dropdown-link-active-color: $black
-$dropdown-link-active-bg: $primary
-
-// Cards
-$card-bg: $bg
-$card-border-color: $fgAlpha
-
-// List group
-$list-group-bg: $bgMix
+$card-bg: $bg2

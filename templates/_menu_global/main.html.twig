@@ -1,0 +1,23 @@
+<nav id="menu">
+    <a class="brand" href="{{ path('homepage') }}">Brand name</a>
+    <ul>
+        <li>
+            <a href="{{ path('_ui_index') }}">UI Demo</a>
+        </li>
+        <li>
+            {% if app.session.get('dark_theme') %}
+                <a href="?_dark=0">Light mode</a>
+            {% else %}
+                <a href="?_dark=1">Dark mode</a>
+            {% endif %}
+        </li>
+        <li>
+            <a href="#">Other</a>
+            <ul>
+                <li>
+                    <a href="#">Sub-item</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>

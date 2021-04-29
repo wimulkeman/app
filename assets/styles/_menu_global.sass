@@ -1,0 +1,45 @@
+@import "theme"
+
+$menu-bg: $fg
+$menu-fg: $bg
+
+@if $darkTheme
+    $menu-bg: $bg2
+    $menu-fg: $fg2
+
+$menu-transition-duration: .5s
+$menu-width: 180px
+
+#menu
+    height: 100%
+    width: $menu-width
+    position: fixed
+    z-index: 1
+    top: 0
+    left: 0
+    background-color: $menu-bg
+    overflow-x: hidden
+    transition: $menu-transition-duration
+
+    > a.brand // Brand name
+        display: block
+        text-align: center
+        padding: .5rem 0
+        color: $menu-fg
+        font-weight: bold
+        text-decoration: none
+
+    ul, li
+        margin: 0
+        padding: 0
+
+    li
+        list-style-type: none
+
+    > ul
+        > li
+            padding: .5rem
+
+#content
+    margin-left: $menu-width
+    transition: $menu-transition-duration
