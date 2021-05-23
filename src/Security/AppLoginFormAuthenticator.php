@@ -50,7 +50,7 @@ class AppLoginFormAuthenticator extends AbstractFormLoginAuthenticator implement
         $credentials = [
             'email' => $request->request->get('email'),
             'password' => $request->request->get('password'),
-            'csrf_token' => $request->request->get('_csrf_token'),
+            'csrf_token' => $request->request->get('_token'),
         ];
         $request->getSession()->set(
             Security::LAST_USERNAME,
@@ -96,8 +96,7 @@ class AppLoginFormAuthenticator extends AbstractFormLoginAuthenticator implement
             return new RedirectResponse($targetPath);
         }
 
-        // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        return new RedirectResponse('/');
     }
 
     protected function getLoginUrl()
