@@ -36,9 +36,25 @@ $menu-width: 180px
     li
         list-style-type: none
 
+    a
+        text-decoration: none
+
     > ul
         > li
-            padding: .5rem
+            padding: .2rem
+            > a
+                display: block
+                margin: 0
+                padding: .2rem .5rem
+                &:hover
+                    background-color: rgba($fg, .1)
+
+            > ul
+                background: $bg
+                padding-left: 1rem
+
+                > li > a
+                    color: $fg
 
 #content
     margin-left: $menu-width
