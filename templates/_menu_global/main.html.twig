@@ -3,6 +3,14 @@
     <ul>
         <li>
             <a href="{{ path('_ui_index') }}">UI Demo</a>
+            <ul>
+                <li>
+                    <a href="{{ path('_ui_form') }}">Forms</a>
+                </li>
+                <li>
+                    <a href="#">Tables</a>
+                </li>
+            </ul>
         </li>
         <li>
             {% if app.session.get('dark_theme') %}
@@ -11,13 +19,19 @@
                 <a href="?_dark=1">Dark mode</a>
             {% endif %}
         </li>
-        <li>
-            <a href="#">Other</a>
-            <ul>
-                <li>
-                    <a href="#">Sub-item</a>
-                </li>
-            </ul>
-        </li>
+        {% if is_granted('ROLE_USER') %}
+            <li>
+                <a href="#">{{ app.user.username }}</a>
+                <ul>
+                    <li>
+                        <a href="{{ path('app_logout') }}">Logout</a>
+                    </li>
+                </ul>
+            </li>
+        {% else %}
+            <li>
+                <a href="{{ path('app_login') }}">Login</a>
+            </li>
+        {% endif %}
     </ul>
 </nav>
