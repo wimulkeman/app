@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -47,6 +48,7 @@ class SecurityController extends AbstractController
             ->createNamedBuilder('', FormType::class, $data, $options)
             ->add('email', EmailType::class)
             ->add('password', PasswordType::class)
+            ->add('_remember_me', CheckboxType::class)
             ->add('submit', SubmitType::class)
             ->getForm()
         ;
