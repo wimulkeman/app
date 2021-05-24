@@ -11,8 +11,10 @@
     </head>
     <body>
         {{ include('_menu_global/main.html.twig') }}
-        <div id="content" class="container-fluid">
-            {% block body '' %}
+        <div id="content">
+            <div class="container-fluid">
+                {% block body '' %}
+            </div>
         </div>
         {% block javascripts %}
             {{ encore_entry_script_tags(dark_theme ? 'app_dark' : 'app_light') }}

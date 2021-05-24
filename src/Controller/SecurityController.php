@@ -2,13 +2,8 @@
 
 namespace App\Controller;
 
+use App\Form\LoginType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,24 +28,13 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('homepage');
         }
 
-        // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
         $data = ['email' => $lastUsername];
-        $options = [
-            'csrf_token_id' => 'authenticate',
-        ];
 
-        /** @var Form $form */
         $form = $this->container->get('form.factory')
-            ->createNamedBuilder('', FormType::class, $data, $options)
-            ->add('email', EmailType::class)
-            ->add('password', PasswordType::class)
-            ->add('_remember_me', CheckboxType::class)
-            ->add('submit', SubmitType::class)
-            ->getForm()
+            ->createNamed('', LoginType::class, $data)
         ;
 
         if ($error) {
