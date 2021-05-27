@@ -1,0 +1,19 @@
+{%- use "bootstrap_4_layout.html.twig" -%}
+
+{# Copied from parent #}
+{% block form_errors -%}
+    {%- if errors|length > 0 -%}
+        <span class="{% if form is not rootform %}invalid-feedback{% else %}alert alert-danger{% endif %} d-block">
+            {%- for error in errors -%}
+                <span class="d-block">
+                    <span class="badge bg-danger text-white text-uppercase">{{ 'Error'|trans({}, 'validators') }}</span> <span class="form-error-message">{{ error.message }}</span>
+                </span>
+            {%- endfor -%}
+        </span>
+    {%- endif %}
+{%- endblock form_errors %}
+
+{%- block form_row -%}
+    {% set row_attr = {class: 'mb-2'} %}
+    {{ parent() }}
+{% endblock %}

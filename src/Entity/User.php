@@ -35,6 +35,21 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $fullname;
+
+    /**
+     * @ORM\Column(type="string", length=128, nullable=true)
+     */
+    private $preferredTimezone;
+
+    /**
+     * @ORM\Column(type="string", length=16, nullable=true)
+     */
+    private $preferredLocale;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -114,5 +129,41 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getFullname(): ?string
+    {
+        return $this->fullname;
+    }
+
+    public function setFullname(?string $fullname): self
+    {
+        $this->fullname = $fullname;
+
+        return $this;
+    }
+
+    public function getPreferredTimezone(): ?string
+    {
+        return $this->preferredTimezone;
+    }
+
+    public function setPreferredTimezone(?string $preferredTimezone): self
+    {
+        $this->preferredTimezone = $preferredTimezone;
+
+        return $this;
+    }
+
+    public function getPreferredLocale(): ?string
+    {
+        return $this->preferredLocale;
+    }
+
+    public function setPreferredLocale(?string $preferredLocale): self
+    {
+        $this->preferredLocale = $preferredLocale;
+
+        return $this;
     }
 }

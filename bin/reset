@@ -1,0 +1,13 @@
+#!/bin/bash
+set -euo pipefail
+cd "`dirname "$0"`/.."
+
+if [ ! -d vendor ]; then
+  composer install
+fi
+
+rm -rf var/*
+bin/console doctrine:database:drop --force
+bin/console doctrine:database:create
+bin/console doctrine:schema:create
+bin/console app:fixtures
