@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Form\Profile\ChangePasswordType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\LocaleType;
@@ -28,6 +29,9 @@ class ProfileType extends AbstractType
             ->add('preferredTimezone', TimezoneType::class, [
                 'required' => false,
                 'placeholder' => 'No preferred timezone',
+            ])
+            ->add('changePassword', ChangePasswordType::class, [
+                'inherit_data' => true,
             ])
             ->add('submit', SubmitType::class)
         ;

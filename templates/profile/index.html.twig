@@ -3,6 +3,27 @@
 {% block title 'Your user profile' %}
 
 {% block body %}
+    {%- set change_password = form_widget(form.changePassword) -%}
+    {%- set submit = form_widget(form.submit) -%}
+
     <h1>Profile</h1>
-    {{ form(form) }}
+
+    {{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <h2>General information</h2>
+                <p>Edit your personal information:</p>
+                {{ form_rest(form) }}
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <h2>Change your password</h2>
+                {{ change_password|raw }}
+                {{ form_errors(form.changePassword) }}
+            </div>
+        </div>
+
+        {{ submit|raw }}
+
+    {{ form_end(form) }}
+
 {% endblock %}
