@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use App\Entity\TodoItem;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -37,18 +38,53 @@ class FixturesCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        foreach (['alice', 'bob', 'charlie', 'delphine'] as $name) {
+        $this->loadUsers();
+        $this->loadTodoItems();
+        $this->entityManager->flush();
+        $io->info('Fixtures loaded');
+
+        return Command::SUCCESS;
+    }
+
+    private function loadUsers(): void
+    {
+        $userFixtures = [
+            ['name' => 'alice'],
+            ['name' => 'bob'],
+            ['name' => 'charline'],
+            ['name' => 'delphine'],
+            ['name' => 'eric'],
+        ];
+
+        foreach ($userFixtures as $fixture) {
+            $name = $fixture['name'];
+            $email = $name.'@example.org';
+
             $user = new User();
-            $user->setEmail($name.'@example.org');
+            $user->setEmail($email);
             $passwordEncoded = $this->passwordEncoder->encodePassword($user, $name);
             $user->setPassword($passwordEncoded);
             $this->entityManager->persist($user);
         }
+    }
 
-        $this->entityManager->flush();
+    private function loadTodoItems(): void
+    {
+        $todoItemFixtures = [
+            ['position' => 1, 'title' => 'Login form'],
+            ['position' => 2, 'title' => 'Change password'],
+            ['position' => 3, 'title' => 'Sortable fields'],
+            ['position' => 4, 'title' => 'Security based fields'],
+        ];
 
-        $io->info('Demonstration users created');
+        foreach ($todoItemFixtures as $fixture) {
+            $position = $fixture['position'];
+            $title = $fixture['title'];
 
-        return Command::SUCCESS;
+            $item = new TodoItem();
+            $item->setPosition($position);
+            $item->setTitle($title);
+            $this->entityManager->persist($item);
+        }
     }
 }

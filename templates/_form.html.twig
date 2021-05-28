@@ -5,15 +5,34 @@
     {%- if errors|length > 0 -%}
         <span class="{% if form is not rootform %}invalid-feedback{% else %}alert alert-danger{% endif %} d-block">
             {%- for error in errors -%}
-                <span class="d-block">
-                    <span class="badge bg-danger text-white text-uppercase">{{ 'Error'|trans({}, 'validators') }}</span> <span class="form-error-message">{{ error.message }}</span>
-                </span>
+                <span class="d-block">{#
+                    #}<span class="badge bg-danger text-white text-uppercase">{{ 'Error'|trans({}, 'validators') }}</span> <span class="form-error-message">{{ error.message }}</span>{#
+                #}</span>
             {%- endfor -%}
         </span>
-    {%- endif %}
-{%- endblock form_errors %}
+    {%- endif -%}
+{%- endblock form_errors -%}
 
 {%- block form_row -%}
-    {% set row_attr = {class: 'mb-2'} %}
-    {{ parent() }}
+    {%- set row_attr = {class: 'mb-2'} -%}
+    {{- parent() -}}
+{% endblock %}
+
+{%- block collection_row -%}
+    <div data-controller="collection" class="app-collection">
+        {{- form_widget(form) -}}
+    </div>
+{% endblock %}
+
+{%- block todo_item_row -%}
+    <div class="app-collection-item d-flex mb-2">{#
+        #}<div class="w-25">
+            {{- form_widget(form.position) -}}
+            {{- form_errors(form.position) -}}
+        </div>
+        <div class="w-75">
+            {{- form_widget(form.title) -}}
+            {{- form_errors(form.title) -}}
+        </div>
+    </div>
 {% endblock %}
