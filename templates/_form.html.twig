@@ -36,3 +36,11 @@
         </div>
     </div>
 {% endblock %}
+
+{%- block sortable_row -%}
+    <div data-controller="sortable" class="app-collection">
+        {% for sub in form %}
+            {{ form_row(sub) }}
+        {% endfor %}
+    </div>
+{% endblock %}

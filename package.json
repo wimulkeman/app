@@ -2,6 +2,7 @@
     "devDependencies": {
         "@symfony/stimulus-bridge": "^2.0.0",
         "@symfony/webpack-encore": "^1.0.0",
+        "@types/sortablejs": "^1.10.6",
         "@types/webpack-env": "^1.16.0",
         "core-js": "^3.0.0",
         "regenerator-runtime": "^0.13.2",
@@ -21,6 +22,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "bootstrap": "^5.0.0-beta3"
+        "bootstrap": "^5.0.0-beta3",
+        "sortablejs": "^1.13.0"
     }
 }
