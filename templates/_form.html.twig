@@ -26,16 +26,16 @@
 
 {%- block todo_item_row -%}
     <div class="app-collection-item d-flex mb-2">{#
-        #}<div class="w-25">
+        #}<div class="flex-shrink-1">
             {{- form_widget(form.position) -}}
-            {{- form_errors(form.position) -}}
-        </div>
-        <div class="w-75">
+            <div class="grip"></div>{#
+        #}</div>{#
+        #}<div class="flex-grow-1">
             {{- form_widget(form.title) -}}
             {{- form_errors(form.title) -}}
-        </div>
-    </div>
-{% endblock %}
+        </div>{#
+    #}</div>
+{%- endblock %}
 
 {%- block sortable_row -%}
     <div data-controller="sortable" class="app-collection">

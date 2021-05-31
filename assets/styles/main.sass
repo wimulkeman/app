@@ -32,3 +32,36 @@ h3, h4
 
 h5, h6
     color: rgba($fg, .6)
+
+
+$gripSize: 1.5rem
+$gripColor: $gray-600
+$gripLine: .35rem
+$gripMargin: .5rem
+
+.grip
+    width: $gripSize
+    height: $gripSize
+    position: relative
+    margin: .5rem .25rem
+
+.grip:before
+    position: absolute
+    height: $gripSize/2 - $gripLine
+    top: -$gripLine/2
+    left: 0
+    width: 100%
+    display: block
+    content: ''
+    border-top: $gripLine solid $gripColor
+    border-bottom: $gripLine solid $gripColor
+    box-sizing: content-box
+
+.grip:after
+    position: absolute
+    display: block
+    left: 0
+    bottom: 0
+    width: 100%
+    content: ''
+    border-top: $gripLine solid $gripColor
