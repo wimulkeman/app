@@ -7,6 +7,7 @@ use App\Form\TodoListType;
 use App\Repository\TodoItemRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type as Form;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,18 +18,26 @@ class FormController extends AbstractController
     public function index(): Response
     {
         $form = $this->createFormBuilder()
-            ->add('text', Form\TextType::class)
-            ->add('birthday', Form\BirthdayType::class)
-            ->add('button', Form\ButtonType::class)
-            ->add('checkbox', Form\CheckboxType::class)
-            ->add('choice', Form\ChoiceType::class, [
-                'choices' => ['Foo' => 'foo', 'bar' => 'bar']
+            ->add('fullname', Form\TextType::class)
+            ->add('biography', Form\TextType::class, [
+                'help' => 'Limited to 64 characters.'
             ])
-            ->add('color', Form\ColorType::class)
+            ->add('birthday', Form\BirthdayType::class, [
+                'widget' => 'single_text',
+            ])
+            ->add('checkbox', Form\CheckboxType::class, [
+                'label' => 'I accept to not be distributed',
+            ])
+            ->add('fav_pizza', Form\ChoiceType::class, [
+                'choices' => ['4 cheeses' => 'foo']
+            ])
+            ->add('fav_color', Form\ColorType::class)
             ->add('country', Form\CountryType::class)
             ->add('currency', Form\CurrencyType::class)
             ->getForm()
         ;
+
+        $form->get('fullname')->addError(new FormError('Please, say your name'));
 
         return $this->render('ui/form.html.twig', [
             'form' => $form->createView(),
