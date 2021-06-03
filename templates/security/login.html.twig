@@ -3,8 +3,27 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <div class="col-lg-4 col-md-6 col-sm-8 offset-lg-4 offset-md-3 offset-sm-2 mt-4">
-        <h1 class="h1 mb-3 font-weight-normal">Login</h1>
-        {{ form(form) }}
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-8 offset-lg-4 offset-md-3 offset-sm-2 mt-4">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="h3 text-center mb-3 font-weight-normal">Login</h1>
+                    <hr />
+                    {{ form_start(form) }}
+                    {{ form_errors(form) }}
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email) }}
+                    {{ form_errors(form.email) }}
+                    {{ form_label(form.password) }}
+                    {{ form_widget(form.password) }}
+                    {{ form_errors(form.password) }}
+                    {{ form_label(form._remember_me) }}
+                    {{ form_widget(form._remember_me) }}
+                    {{ form_errors(form._remember_me) }}
+                    {{ form_widget(form.submit) }}
+                    {{ form_rest(form) }}
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

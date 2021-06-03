@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use App\Form\Profile\ChangePasswordType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\LocaleType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -21,7 +22,9 @@ class ProfileType extends AbstractType
             ->add('fullname', TextType::class, [
                 'required' => false,
             ])
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class, [
+                'is_granted' => 'ROLE_ADMIN',
+            ])
             ->add('preferredLocale', LocaleType::class, [
                 'required' => false,
                 'placeholder' => 'No preferred locale',
